@@ -38,6 +38,15 @@ Step 2 : Create new Configuration with build flavor value is :
 
 - flutter build ipa --flavor {flavorOnStep2} --export-options-plist=ios/Runner/ExportOptions.plist
 
+Step 1 : run terminal "flutter clean"
+Step 2 : run terminal "flutter pub get"
+
+Assets, csv,Json generate
+Step 3 : run terminal "dart pub global activate flutter_gen"
+
+Step 4 : run terminal "flutter packages pub run build_runner build"
+or run terminal "flutter packages pub run build_runner build --delete-conflicting-outputs" if error
+
 ### Project architecture (Clean Architecture Approach)
 
 1. Why:
@@ -190,16 +199,16 @@ cloud will take less effort for change and update key and value. Only need updat
 file.
 
 Google sheet sample on this project :
-"https://docs.google.com/spreadsheets/d/1SpiJWFRfJaIRnzpEc0mJ2WaaI9JYlz8jKBPduAPzdXE/edit#gid=1013756643"
+"https://docs.google.com/spreadsheets/d/1LTBjKuwUF4ug0EwP1N6ruBcIsc0nNGBueExL_L4jbso/edit#gid=0"
 
 Step to set-up google sheet :
 
 - 1 : Create a CSV Google Sheet with form like that form
-  "https://docs.google.com/spreadsheets/d/1SpiJWFRfJaIRnzpEc0mJ2WaaI9JYlz8jKBPduAPzdXE/edit#gid=1013756643"
+  "https://docs.google.com/spreadsheets/d/1LTBjKuwUF4ug0EwP1N6ruBcIsc0nNGBueExL_L4jbso/edit#gid=0"
 - 2 : Enable share for anyone have this link
 - 3 : on file locale_keys.dart in lib/utils/multi-languages/locale_keys.dart change docId annotation
   with your google sheet docid Example of DocID is :
-  "https://docs.google.com/spreadsheets/d/1SpiJWFRfJaIRnzpEc0mJ2WaaI9JYlz8jKBPduAPzdXE (it's docId)
+  "https://docs.google.com/spreadsheets/d/1LTBjKuwUF4ug0EwP1N6ruBcIsc0nNGBueExL_L4jbso (it's docId)
   /edit#gid=1013756643"
 - 4 : run terminal : "flutter pub run build_runner build" to generate .g.dart localization file
 - 5 : When update new value on google sheet should update plus one version on SheetLocalization at

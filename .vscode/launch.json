@@ -5,10 +5,36 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "flutter_temp_by_nqh",
+            "name": "nqh-dev",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "flutterMode": "debug",
+            "args": [
+                "--flavor",
+                "dev",
+            ]
         },
+        {
+            "name": "nqh-stag",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "args": [
+                "--flavor",
+                "stag",
+            ]
+        },
+        {
+            "name": "nqh-prod",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "args": [
+                "--flavor",
+                "prod",
+            ]
+        },
+
         {
             "name": "flutter_temp_by_nqh (profile mode)",
             "request": "launch",

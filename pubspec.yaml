@@ -57,6 +57,7 @@ dependencies:
   flutter_lints: ^1.0.4
 
   #Firebase library
+  firebase_core: ^1.14.1
   firebase_analytics: ^9.1.2
   firebase_crashlytics: ^2.5.3
 
@@ -98,9 +99,10 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images
-    - assets/logos
-    - assets/icons
+    - resources/langs/
+    - assets/images/
+    # - assets/logos/
+    # - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_temp_by_nqh/config/app_config.dart';
 import 'package:flutter_temp_by_nqh/config/styles.dart';
 import 'package:flutter_temp_by_nqh/gen/assets.gen.dart';
+import 'package:flutter_temp_by_nqh/utils/multi_languages/multi_languages_utils.dart';
 import 'package:flutter_temp_by_nqh/utils/route/app_routing.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -70,6 +72,10 @@ class _SplashScreenState extends State<SplashScreen>
           ),
           Text(
             "Welcome",
+            style: AppTextStyle.label4,
+          ),
+          Text(
+            "Login Screen ${LocaleKeys.title.tr()} ${AppConfig.getInstance()!.appFlavor}",
             style: AppTextStyle.label4,
           ),
         ],

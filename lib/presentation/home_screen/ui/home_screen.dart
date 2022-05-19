@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_temp_by_nqh/config/app_config.dart';
 import 'package:flutter_temp_by_nqh/config/styles.dart';
 import 'package:flutter_temp_by_nqh/gen/assets.gen.dart';
+import 'package:flutter_temp_by_nqh/utils/multi_languages/multi_languages_utils.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -22,6 +24,10 @@ class _HomeScreenState extends State<HomeScreen> {
           Text(
             "Home Page",
             style: AppTextStyle.label2,
+          ),
+          Text(
+            "Login Screen ${LocaleKeys.title.tr()} ${AppConfig.getInstance()!.appFlavor}",
+            style: AppTextStyle.label4,
           ),
         ],
       ),

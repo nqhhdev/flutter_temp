@@ -16,17 +16,23 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   late AnimationController controller;
+  late bool _showButton;
   String get _initRoute {
     return RouteDefine.homeScreen.name;
   }
 
   void changeScreen() async {
     await Future.delayed(const Duration(seconds: 5));
+    _navigator();
+  }
+
+  void _navigator() {
     Navigator.pushReplacementNamed(context, _initRoute);
   }
 
   @override
   void initState() {
+    _showButton = true;
     controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 5),
@@ -78,6 +84,14 @@ class _SplashScreenState extends State<SplashScreen>
             "Login Screen ${LocaleKeys.title.tr()} ${AppConfig.getInstance()!.appFlavor}",
             style: AppTextStyle.label4,
           ),
+          _showButton
+              ? ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text("Back"),
+                )
+              : const SizedBox(),
         ],
       ),
     );

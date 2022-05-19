@@ -3,6 +3,7 @@ import 'package:flutter_temp_by_nqh/config/app_config.dart';
 import 'package:flutter_temp_by_nqh/config/styles.dart';
 import 'package:flutter_temp_by_nqh/gen/assets.gen.dart';
 import 'package:flutter_temp_by_nqh/utils/multi_languages/multi_languages_utils.dart';
+import 'package:flutter_temp_by_nqh/utils/route/app_routing.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -28,6 +29,12 @@ class _HomeScreenState extends State<HomeScreen> {
           Text(
             "Login Screen ${LocaleKeys.title.tr()} ${AppConfig.getInstance()!.appFlavor}",
             style: AppTextStyle.label4,
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, RouteDefine.splashScreen.name);
+            },
+            child: const Text("Back"),
           ),
         ],
       ),

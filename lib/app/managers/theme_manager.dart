@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_temp_by_nqh/config/colors.dart';
+part of app_layer;
 
-class AppTheme with ChangeNotifier {
+class ThemeManager with ChangeNotifier {
   static bool _isDarkTheme = false;
 
   ThemeMode get currentTheme => _isDarkTheme ? ThemeMode.dark : ThemeMode.light;
@@ -14,8 +13,8 @@ class AppTheme with ChangeNotifier {
   static ThemeData get lightTheme {
     return ThemeData(
       primarySwatch: Colors.blue,
-      backgroundColor: AppColors.white,
-      scaffoldBackgroundColor: AppColors.white,
+      backgroundColor: ColorsManager.white,
+      scaffoldBackgroundColor: ColorsManager.white,
       brightness: Brightness.light,
     );
   }
@@ -23,8 +22,8 @@ class AppTheme with ChangeNotifier {
   static ThemeData get darkTheme {
     return ThemeData(
       primarySwatch: Colors.blue,
-      backgroundColor: AppColors.black,
-      scaffoldBackgroundColor: AppColors.black,
+      backgroundColor: ColorsManager.black,
+      scaffoldBackgroundColor: ColorsManager.black,
       brightness: Brightness.dark,
     );
   }

@@ -1,14 +1,4 @@
-
-
-
-import 'package:dio/dio.dart';
-import 'package:alice/alice.dart';
-import 'package:flutter_temp_by_nqh/config/app_config.dart';
-import 'package:flutter_temp_by_nqh/config/navigation_util.dart';
-import 'package:flutter_temp_by_nqh/config/theme.dart';
-import 'package:flutter_temp_by_nqh/data/utils/shared_pref_manager.dart';
-import 'package:get_it/get_it.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+part of app_layer;
 
 GetIt getIt = GetIt.instance;
 
@@ -21,14 +11,14 @@ Future _registerAppComponents() async {
   final sharedPreferencesManager = await SharedPreferencesManager.getInstance();
   getIt.registerSingleton<SharedPreferencesManager>(sharedPreferencesManager!);
 
-  final appTheme = AppTheme();
+  final appTheme = ThemeManager();
   getIt.registerSingleton(appTheme);
 }
 
 Future<void> _registerNetworkComponents() async {
   final dio = Dio(
     BaseOptions(
-      baseUrl: AppConfig.getInstance()!.apiBaseUrl,
+      baseUrl: ConfigManager.getInstance()!.apiBaseUrl,
       connectTimeout: 10000,
     ),
   );
@@ -52,5 +42,4 @@ Future<void> _registerNetworkComponents() async {
     ],
   );
   getIt.registerSingleton(dio);
-
 }

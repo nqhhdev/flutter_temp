@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+part of app_layer;
 
-class AppColors {
+class ColorsManager {
   static const white = Colors.white;
   static const black = Colors.black;
   static const blue = Colors.blue;

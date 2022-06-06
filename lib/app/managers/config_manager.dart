@@ -1,57 +1,54 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_temp_by_nqh/firebase/firebase_options.dart' as prod;
-import 'package:flutter_temp_by_nqh/firebase/firebase_options_dev.dart' as dev;
-import 'package:flutter_temp_by_nqh/firebase/firebase_options_staging.dart' as staging;
+part of app_layer;
 
-enum AppFlavor {
+enum FlavorManager {
   dev,
   stag,
   prod,
 }
 
-class AppConfig {
+class ConfigManager {
   final String apiBaseUrl;
-  final AppFlavor appFlavor;
+  final FlavorManager appFlavor;
 
-  AppConfig({
+  ConfigManager({
     required this.apiBaseUrl,
     required this.appFlavor,
   });
 
-  static AppConfig? _instance;
+  static ConfigManager? _instance;
 
-  static AppConfig devConfig = AppConfig(
+  static ConfigManager devConfig = ConfigManager(
     ///You can fill URL API
     apiBaseUrl: '',
-    appFlavor: AppFlavor.dev,
+    appFlavor: FlavorManager.dev,
   );
 
-  static AppConfig stagingConfig = AppConfig(
+  static ConfigManager stagingConfig = ConfigManager(
     ///You can fill URL API
     apiBaseUrl: '',
-    appFlavor: AppFlavor.stag,
+    appFlavor: FlavorManager.stag,
   );
 
-  static AppConfig productionConfig = AppConfig(
+  static ConfigManager productionConfig = ConfigManager(
     ///You can fill URL API
     apiBaseUrl: '',
-    appFlavor: AppFlavor.prod,
+    appFlavor: FlavorManager.prod,
   );
 
   FirebaseOptions get flavorFirebaseOption {
     switch (_instance?.appFlavor) {
-      case AppFlavor.dev:
+      case FlavorManager.dev:
         return dev.DefaultFirebaseOptions.currentPlatform;
-      case AppFlavor.stag:
+      case FlavorManager.stag:
         return staging.DefaultFirebaseOptions.currentPlatform;
-      case AppFlavor.prod:
+      case FlavorManager.prod:
         return prod.DefaultFirebaseOptions.currentPlatform;
       default:
         return dev.DefaultFirebaseOptions.currentPlatform;
     }
   }
 
-  static AppConfig? getInstance({flavorName}) {
+  static ConfigManager? getInstance({flavorName}) {
     if (_instance == null) {
       switch (flavorName) {
         case 'dev':

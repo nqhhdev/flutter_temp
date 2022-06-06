@@ -1,10 +1,6 @@
+part of app_layer;
 
-
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_temp_by_nqh/config/colors.dart';
-
-class AppTextStyle {
+class StyleManager {
   static TextStyle get label1 {
     return TextStyle(
       fontSize: 40.sp,
@@ -46,7 +42,7 @@ class AppTextStyle {
   static TextStyle get buttonLabel {
     return TextStyle(
       fontSize: 20.sp,
-      color: AppColors.blue,
+      color: ColorsManager.blue,
     );
   }
 }

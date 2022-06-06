@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_temp_by_nqh/utils/multi_languages/multi_languages_utils.dart';
+import 'package:flutter_temp_by_nqh/app/multi_languages/multi_languages_utils.dart';
 
 class ApiException {
   String? errorCode;

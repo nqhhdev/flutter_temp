@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_temp_by_nqh/config/app_config.dart';
-import 'package:flutter_temp_by_nqh/config/styles.dart';
+import 'package:flutter_temp_by_nqh/app/app.dart';
+import 'package:flutter_temp_by_nqh/app/multi_languages/multi_languages_utils.dart';
 import 'package:flutter_temp_by_nqh/gen/assets.gen.dart';
-import 'package:flutter_temp_by_nqh/utils/multi_languages/multi_languages_utils.dart';
-import 'package:flutter_temp_by_nqh/utils/route/app_routing.dart';
+import 'package:flutter_temp_by_nqh/app/routes/app_routing.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -78,11 +77,11 @@ class _SplashScreenState extends State<SplashScreen>
           ),
           Text(
             "Welcome",
-            style: AppTextStyle.label4,
+            style: StyleManager.label4,
           ),
           Text(
-            "Login Screen ${LocaleKeys.title.tr()} ${AppConfig.getInstance()!.appFlavor}",
-            style: AppTextStyle.label4,
+            "Login Screen ${LocaleKeys.title.tr()} ${ConfigManager.getInstance()!.appFlavor}",
+            style: StyleManager.label4,
           ),
           _showButton
               ? ElevatedButton(

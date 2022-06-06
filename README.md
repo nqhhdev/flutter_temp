@@ -1,7 +1,7 @@
 # flutter_temp_by_nqh
 # clean_architecture
 
-A new Flutter application with clean architecture
+Template Flutter application with clean architecture structure
 
 ## FVM Installation
 
@@ -9,11 +9,14 @@ https://fvm.app/docs/getting_started/installation
 
 ## Getting Started
 
-- Flutter version using : 3.0.0 (stable at 5/2022)
-- Dart version using : 2.16.1
-- Platform android : 31, Build-tools : 30.0.2
-- Java version OpenJDK 11.0.11+9
-- Gradle version 6.7.1
+- Flutter version using : 3.0.1 (stable at 20/5/2022)
+- Dart version using : 2.17.1
+- Platform android : 32, Build-tools : 32.1.0-rc1
+- Java version OpenJDK 11.0.12
+- Gradle version 7.2
+- Build:gradle 7.1.3
+- XCode: 13.4
+- CocoaPods version 1.11.3
 
 ### Configure Firebase Multi Flavor
 
@@ -28,15 +31,18 @@ Step 3 : Install FlutterFire CLI with this command : "dart pub global activate f
 Step 4 : Configure multi flavor with: 
 
 Run command "flutterfire configure -i packageName -a packageName -o lib/firebase/firebase_options_{flavor}.dart" for each flavor. 
-Dev: "flutterfire configure -i com.example.flutterTempByNqh.dev -a com.example.flutterTempByNqh.dev -o lib/firebase/firebase_options_dev.dart"
-Staging: "flutterfire configure -i com.example.flutterTempByNqh.staging -a com.example.flutterTempByNqh.staging -o lib/firebase/firebase_options_staging.dart"
-Production: "flutterfire configure -i com.example.flutterTempByNqh -a com.example.flutterTempByNqh -o lib/firebase/firebase_options.dart"
+
+Dev: "flutterfire configure -i com.vmo.c3FlutterTemp.dev -a com.vmo.c3FlutterTemp.dev -o lib/firebase/firebase_options_dev.dart"
+
+Staging: "flutterfire configure -i com.vmo.c3FlutterTemp.staging -a com.vmo.c3FlutterTemp.staging -o lib/firebase/firebase_options_staging.dart"
+
+Production: "flutterfire configure -i com.vmo.c3FlutterTemp -a com.vmo.c3FlutterTemp -o lib/firebase/firebase_options.dart"
 
 Other configure:
-xn
 ![](flutter-fire-configure.png)
 
 Documentation at : https://firebase.google.com/docs/flutter/setup?platform=ios
+
 ### Configuration Environment Running
 
 - ANDROID STUDIO Step 1 : Open " Run => Edit Configuration in Android Studio"
@@ -44,13 +50,17 @@ Documentation at : https://firebase.google.com/docs/flutter/setup?platform=ios
 Step 2 : Create new Configuration with build flavor value is :
 
 + Develop Environment : dev
-+ Staging Environment : stag
-+ Production Environment : prod
++ Staging Environment : staging
++ Production Environment : production
 
 ### Command need to run before run app
 
 - Please run script ".setup_app.sh" in terminal (On MacOS if can't run this script please try "sh
   .setup_app.sh")
+
+### Linter
+
+- We're using two linter library, first is [flutter_lint](https://pub.dev/packages/flutter_lints/install), second is [dart_code_metrics](https://pub.dev/packages/dart_code_metrics) that'll help our code following coding convension better.
 
 ### Build APK
 
@@ -59,15 +69,6 @@ Step 2 : Create new Configuration with build flavor value is :
 ### Build IPA without archive on Xcode
 
 - flutter build ipa --flavor {flavorOnStep2} --export-options-plist=ios/Runner/ExportOptions.plist
-
-Step 1 : run terminal "flutter clean"
-Step 2 : run terminal "flutter pub get"
-
-Assets, csv,Json generate
-Step 3 : run terminal "dart pub global activate flutter_gen"
-
-Step 4 : run terminal "flutter packages pub run build_runner build"
-or run terminal "flutter packages pub run build_runner build --delete-conflicting-outputs" if error
 
 ### Project architecture (Clean Architecture Approach)
 
@@ -114,17 +115,17 @@ project
 |--assets                                            # application all assets
 |   |--images                                        # application image assets
 |   |--fonts                                         # application font assets
+|--fastlane                                          # config ci/cd using fastlane
 |--ios                                               # ios dir
 |--lib                                               # main project dart lib entry point
-|   |--config                                        # configuration for project
-|   |   |--app_config.dart                           # config enum flavor and baseURL (development, staging, production)
-|   |   |--colors.dart                               # config for color
-|   |   |--navigation_util.dart                      # config navigation key and nested navigation key
-|   |   |--styles.dart                               # config for text styles
-|   |   |--theme.dart                                # config for theme for project
-|   |--core                                          # core project include string extension, int extension, double extension,... 
-|   |   |--string.dart                               # string extension function
-|   |   |--double.dart                               # double extension function
+|   |--app                                           # application layer for clean architecture 
+|   |   |--core                                      # core folder include string extension,...
+|   |   |--di                                        # dependencies injection registration for project
+|   |   |--manager                                   # manager folder include style manager, other resource manager
+|   |   |--multi-languages                           # localization for project, using easy_localization and google sheet generator csv
+|   |   |--route                                     # route config for project, include generateRoute and route define all screen of project
+|   |   |--utils                                     # utils for application layer
+|   |   |--app.dart                                  # library app_layer using for import and combine most of application layer files
 |   |--data                                          # data layer for clean architecture 
 |   |   |--login                                     # login feature folder
 |   |   |   |--api                                   # api folder
@@ -137,13 +138,14 @@ project
 |   |   |   |   |--login_repository_impl             # repository impl will extend from login_repository abstract class
 |   |   |--utils                                     # utils for data layer
 |   |   |   |--exceptions                            # custom exception for data layer
-|   |   |   |--share_pref_manager.dart               # Share preferences manager class (include share preferences key enum)
+|   |   |   |--interceptors                          # custom interceptors for data layer
 |   |--domain                                        # domain layer for clean architecture 
 |   |   |--login                                     # login domain feature folder
 |   |   |   |--entities                              # entities folder
 |   |   |   |   |--user_entity.dart                  # user entity will extends from login_response.dart
 |   |   |   |--repositories                          # abstract class for login feature
 |   |   |   |--usecases                              # usecases for login feature
+|   |--firebase                                      # firebase config for app that generated by Firebase CLI 
 |   |--presentation                                  # presentation layer for clean architecture 
 |   |   |--common                                    # common widget or common screen
 |   |   |--login                                     # login presentation layer
@@ -152,24 +154,18 @@ project
 |   |   |   |   |--login_screen.dart                 # login ui frame
 |   |   |   |   |--widgets                           # widgets folder for nested widget in login feature
 |   |   |   |--login_route.dart                      # login route class define BlocProvider for Bloc class of login feature
-|   |--utils                                         # utility folder for project
-|   |   |--di                                        # dependencies injection registration for project
-|   |   |--multi-languages                           # localization for project, using easy_localization and google sheet generator csv
-|   |   |--route                                     # route config for project, include generateRoute and route define all screen of project
-|   |   |--session_utils.dart                        # session utility for project like getAccessToken or something using common most
 |   |--main.dart                                     # main config Material App and runApp
 |--test                                              # unit test
 |--web
 |--.gitignore                                        # ignore file of git
-|--fastlane                                          # config ci/cd using fastlane
 |--README.md                                         # ReadMe for this project
 |--analysis_options.yaml                             # lint rule configuration, config rule here
 |--.gitlab-ci.yml                                    # config ci/cd for gitlab
 |--pubspec.yaml                                      # dart package management file, add new dependencies here
-|--.setup_app.sh                                     # Script to set up app before run app
-|--.setup_env_config.sh                              # Script to set up environment variable to display on ci/cd
-|--.setup_fastlane.sh                                # Script to set up fastlane config before run ci/cd
-|--..build_android.sh                                # Script to build android on local
+|--.setup_app.sh                                     # Script set up app before run app
+|--.setup_env_config.sh                              # Script set up environment variable to display on ci/cd
+|--.setup_fastlane.sh                                # Script set up fastlane config before run ci/cd
+|--.build_android.sh                                # Script build android on local
 
 ```
 
@@ -204,7 +200,7 @@ BlocProvider.value(
 
 for usage (in Widgets), **always** use
 
-`context.boc<PumpsBloc>().add(AddPumps());`
+`context.read<PumpsBloc>().add(AddPumps());`
 
 instead of
 
@@ -221,16 +217,16 @@ cloud will take less effort for change and update key and value. Only need updat
 file.
 
 Google sheet sample on this project :
-"https://docs.google.com/spreadsheets/d/1LTBjKuwUF4ug0EwP1N6ruBcIsc0nNGBueExL_L4jbso/edit#gid=0"
+"https://docs.google.com/spreadsheets/d/1SpiJWFRfJaIRnzpEc0mJ2WaaI9JYlz8jKBPduAPzdXE/edit#gid=1013756643"
 
 Step to set-up google sheet :
 
 - 1 : Create a CSV Google Sheet with form like that form
-  "https://docs.google.com/spreadsheets/d/1LTBjKuwUF4ug0EwP1N6ruBcIsc0nNGBueExL_L4jbso/edit#gid=0"
+  "https://docs.google.com/spreadsheets/d/1SpiJWFRfJaIRnzpEc0mJ2WaaI9JYlz8jKBPduAPzdXE/edit#gid=1013756643"
 - 2 : Enable share for anyone have this link
 - 3 : on file locale_keys.dart in lib/utils/multi-languages/locale_keys.dart change docId annotation
   with your google sheet docid Example of DocID is :
-  "https://docs.google.com/spreadsheets/d/1LTBjKuwUF4ug0EwP1N6ruBcIsc0nNGBueExL_L4jbso (it's docId)
+  "https://docs.google.com/spreadsheets/d/1SpiJWFRfJaIRnzpEc0mJ2WaaI9JYlz8jKBPduAPzdXE (it's docId)
   /edit#gid=1013756643"
 - 4 : run terminal : "flutter pub run build_runner build" to generate .g.dart localization file
 - 5 : When update new value on google sheet should update plus one version on SheetLocalization at
@@ -297,7 +293,7 @@ flutter pub run build_runner build --delete-conflicting-outputs
 - We using library [change_app_package_name](https://pub.dev/packages/change_app_package_name) for
   easy and fast to change all package name on android and IOS
 - Using terminal : flutter pub run change_app_package_name:main "newPackageName"
-- Example : flutter pub run change_app_package_name:main com.vmo.newApp
+- Example : flutter pub run change_app_package_name:main com.domain.newApp
 
 ## Using fastlane
 

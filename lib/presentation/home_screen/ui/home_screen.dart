@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_temp_by_nqh/config/app_config.dart';
-import 'package:flutter_temp_by_nqh/config/styles.dart';
+import 'package:flutter_temp_by_nqh/app/app.dart';
+import 'package:flutter_temp_by_nqh/app/multi_languages/multi_languages_utils.dart';
 import 'package:flutter_temp_by_nqh/gen/assets.gen.dart';
-import 'package:flutter_temp_by_nqh/utils/multi_languages/multi_languages_utils.dart';
-import 'package:flutter_temp_by_nqh/utils/route/app_routing.dart';
 import 'package:local_auth/local_auth.dart';
-import 'package:local_auth/error_codes.dart' as local_auth_error;
 
 enum _SupportState {
   unknown,
@@ -44,9 +41,8 @@ class _HomeScreenState extends State<HomeScreen> {
     late bool canCheckBiometrics;
     try {
       canCheckBiometrics = await auth.canCheckBiometrics;
-    } on PlatformException catch (e) {
+    } on PlatformException catch (_) {
       canCheckBiometrics = false;
-      print(e);
     }
     if (!mounted) {
       return;
@@ -61,9 +57,8 @@ class _HomeScreenState extends State<HomeScreen> {
     late List<BiometricType> availableBiometrics;
     try {
       availableBiometrics = await auth.getAvailableBiometrics();
-    } on PlatformException catch (e) {
+    } on PlatformException catch (_) {
       availableBiometrics = <BiometricType>[];
-      print(e);
     }
     if (!mounted) {
       return;
@@ -91,9 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         _isAuthenticating = false;
       });
-      print("Success");
     } on PlatformException catch (e) {
-      print(e);
       setState(() {
         _isAuthenticating = false;
         _authorized = 'Error - ${e.message}';
@@ -129,7 +122,6 @@ class _HomeScreenState extends State<HomeScreen> {
         _authorized = 'Authenticating';
       });
     } on PlatformException catch (e) {
-      print(e);
       setState(() {
         _isAuthenticating = false;
         _authorized = 'Error - ${e.message}';
@@ -162,11 +154,11 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Text(
             "Home Page",
-            style: AppTextStyle.label2,
+            style: StyleManager.label2,
           ),
           Text(
-            "Login Screen ${LocaleKeys.title.tr()} ${AppConfig.getInstance()!.appFlavor}",
-            style: AppTextStyle.label4,
+            "Login Screen ${LocaleKeys.title.tr()} ${ConfigManager.getInstance()!.appFlavor}",
+            style: StyleManager.label4,
           ),
           if (_supportState == _SupportState.unknown)
             const CircularProgressIndicator()

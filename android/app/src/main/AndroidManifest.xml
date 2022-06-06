@@ -2,6 +2,9 @@
     package="com.example.flutter_temp_by_nqh">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
+
+
   
    <application
         android:label="flutter_temp_by_nqh"

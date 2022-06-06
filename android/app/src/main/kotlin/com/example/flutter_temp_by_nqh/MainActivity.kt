@@ -1,5 +1,6 @@
 package com.example.flutter_temp_by_nqh
 
+import io.flutter.embedding.android.FlutterFragmentActivity
 import androidx.annotation.NonNull
 import com.example.flutter_temp_by_nqh.BuildConfig.FLAVOR
 import io.flutter.embedding.android.FlutterActivity
@@ -18,5 +19,6 @@ class MainActivity : FlutterActivity() {
                 result.success(FLAVOR)
             } 
         }
+        GeneratedPluginRegistrant.registerWith(flutterEngine)
     }
 }

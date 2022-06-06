@@ -65,6 +65,9 @@ dependencies:
   shared_preferences: ^2.0.15
   path_provider: ^2.0.10
 
+  #Auth Library
+  local_auth: ^2.1.0
+
   #UI library
   cupertino_icons: ^1.0.4
   cached_network_image: ^3.2.0

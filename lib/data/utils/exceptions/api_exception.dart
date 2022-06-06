@@ -75,6 +75,7 @@ class ApiException {
             }
 
             try {
+              // ignore: no_leading_underscores_for_local_identifiers
               final _errBody = jsonDecode(errorBody);
 
               statusCode = _errBody['statusCode'];

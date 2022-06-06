@@ -210,26 +210,24 @@ For non widget usage, manually inject the object on initialization.
 
 ### Localization
 
-We are using [Easy Localization](https://pub.dev/packages/easy_localization) to handle
-multi-languages.
-Using [Google Sheet Generator](https://github.com/Hoang-Nguyenn/easy_localization_generator) on
-cloud will take less effort for change and update key and value. Only need update in google sheet
-file.
+We are using Easy Localization to handle multi-languages. Using Google Sheet Generator on cloud will take less effort for change and update key and value. Only need update in google sheet file.
 
-Google sheet sample on this project :
-"https://docs.google.com/spreadsheets/d/1SpiJWFRfJaIRnzpEc0mJ2WaaI9JYlz8jKBPduAPzdXE/edit#gid=1013756643"
+Google sheet sample on this project : "https://docs.google.com/spreadsheets/d/1LTBjKuwUF4ug0EwP1N6ruBcIsc0nNGBueExL_L4jbso/edit#gid=0"
 
 Step to set-up google sheet :
 
-- 1 : Create a CSV Google Sheet with form like that form
-  "https://docs.google.com/spreadsheets/d/1SpiJWFRfJaIRnzpEc0mJ2WaaI9JYlz8jKBPduAPzdXE/edit#gid=1013756643"
-- 2 : Enable share for anyone have this link
-- 3 : on file locale_keys.dart in lib/utils/multi-languages/locale_keys.dart change docId annotation
-  with your google sheet docid Example of DocID is :
-  "https://docs.google.com/spreadsheets/d/1SpiJWFRfJaIRnzpEc0mJ2WaaI9JYlz8jKBPduAPzdXE (it's docId)
-  /edit#gid=1013756643"
-- 4 : run terminal : "flutter pub run build_runner build" to generate .g.dart localization file
-- 5 : When update new value on google sheet should update plus one version on SheetLocalization at
+1 : Create a CSV Google Sheet with form like that form "https://docs.google.com/spreadsheets/d/1LTBjKuwUF4ug0EwP1N6ruBcIsc0nNGBueExL_L4jbso/edit#gid=0"
+2 : Enable share for anyone have this link
+3 : on file locale_keys.dart in lib/utils/multi-languages/locale_keys.dart change docId annotation with your google sheet docid Example of DocID is : "https://docs.google.com/spreadsheets/d/1LTBjKuwUF4ug0EwP1N6ruBcIsc0nNGBueExL_L4jbso (it's docId) /edit#gid=1013756643"
+4 : run terminal : "flutter pub run build_runner build" to generate .g.dart localization file
+5 : When update new value on google sheet should update plus one version on SheetLocalization at locale_keys.dart and run "flutter packages pub run build_runner build" again to get new file csv
+Step to use multi-languages import in code:
+
+Remember import file "multi_languages_utils.dart" instead of "locale_keys.dart" because first file already import library easy_localization extension,you no need to use 2 import
+
+Using : LocaleKeys.keyDefine.tr() (tr() is using to change languages with current languages setup, remember have it)
+
+Link library : https://pub.dev/packages/easy_localization Link plugin generate csv from google sheet : https://github.com/Hoang-Nguyenn/easy_localization_generator
   locale_keys.dart and run "flutter packages pub run build_runner build" again to get new file csv
 
 Step to use multi-languages import in code:

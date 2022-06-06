@@ -91,14 +91,14 @@ class _HomeScreenState extends State<HomeScreen> {
         _isAuthenticating = false;
         _authorized = 'Error - ${e.message}';
       });
-      return;
     }
     if (!mounted) {
       return;
     }
 
     setState(
-        () => _authorized = authenticated ? 'Authorized' : 'Not Authorized');
+      () => _authorized = authenticated ? 'Authorized' : 'Not Authorized',
+    );
   }
 
   Future<void> _authenticateWithBiometrics() async {
@@ -172,7 +172,8 @@ class _HomeScreenState extends State<HomeScreen> {
             child: const Text('Check biometrics'),
           ),
           Text(
-              'Available biometrics: ${_availableBiometrics ?? "Click to check"}\n'),
+            'Available biometrics: ${_availableBiometrics ?? "Click to check"}\n',
+          ),
           ElevatedButton(
             onPressed: _getAvailableBiometrics,
             child: const Text('Get available biometrics'),

@@ -27,6 +27,7 @@ class ApiException {
       if (exception.error is SocketException) {
         return LocaleKeys.pleaseCheckYourInternetConnection.tr();
       }
+      // ignore: newline-before-return
       return exception.error.toString();
     }
 
@@ -37,6 +38,7 @@ class ApiException {
       if (responseData["message"] is List) {
         /// We get first error message return from backend if message error is List, Can join later
         final List<dynamic> listErrorMessage = responseData["message"];
+        // ignore: newline-before-return
         return listErrorMessage.first.toString();
       } else {
         return responseData["message"].toString();
@@ -47,6 +49,7 @@ class ApiException {
     return errorMessage!;
   }
 
+  // ignore: long-method
   ApiException({required this.exception}) {
     switch (exception.type) {
       case DioErrorType.response:
@@ -55,6 +58,7 @@ class ApiException {
 
           try {
             errorCode = errorBody['error'];
+            // ignore: prefer-conditional-expressions
             if (errorBody['message'] is List) {
               errorMessage = errorBody['message'][0];
             } else {
@@ -79,6 +83,7 @@ class ApiException {
               final _errBody = jsonDecode(errorBody);
 
               statusCode = _errBody['statusCode'];
+              // ignore: prefer-conditional-expressions
               if (_errBody['message'] is List) {
                 errorMessage = _errBody['message'][0];
               } else {

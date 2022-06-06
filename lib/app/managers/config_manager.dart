@@ -67,8 +67,10 @@ class ConfigManager {
           }
           break;
       }
+      // ignore: newline-before-return
       return _instance;
     }
+    // ignore: newline-before-return
     return _instance;
   }
 }

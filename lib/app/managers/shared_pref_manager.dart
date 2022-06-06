@@ -11,6 +11,7 @@ class SharedPreferencesManager {
   static Future<SharedPreferencesManager?> getInstance() async {
     _instance ??= SharedPreferencesManager();
     _sharedPreferences ??= await SharedPreferences.getInstance();
+    // ignore: newline-before-return
     return _instance;
   }
 

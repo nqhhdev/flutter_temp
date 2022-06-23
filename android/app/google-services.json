@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:425597811061:android:f53e24ff5e56c0ac09bb3c",
+        "mobilesdk_app_id": "1:425597811061:android:97b8c6e6f7f2124b09bb3c",
         "android_client_info": {
-          "package_name": "com.example.flutterTempByNqh"
+          "package_name": "com.example.flutter_temp_by_nqh"
         }
       },
       "oauth_client": [
@@ -43,9 +43,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:425597811061:android:885c743b4515514309bb3c",
+        "mobilesdk_app_id": "1:425597811061:android:721970bdeb59e05609bb3c",
         "android_client_info": {
-          "package_name": "com.example.flutterTempByNqh.dev"
+          "package_name": "com.example.flutter_temp_by_nqh.dev"
         }
       },
       "oauth_client": [
@@ -79,9 +79,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:425597811061:android:faa2b887da1bcd1309bb3c",
+        "mobilesdk_app_id": "1:425597811061:android:c182be0f78e4040e09bb3c",
         "android_client_info": {
-          "package_name": "com.example.flutterTempByNqh.staging"
+          "package_name": "com.example.flutter_temp_by_nqh.staging"
         }
       },
       "oauth_client": [

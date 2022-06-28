@@ -14,7 +14,7 @@ class AppRouting {
     final routes = <String, WidgetBuilder>{
       ///ADD ROUTE
       RouteDefine.splashScreen.name: (_) => SplashRoute.route,
-      RouteDefine.homeScreen.name:(_) => HomeRoute.route,
+      RouteDefine.homeScreen.name: (_) => HomeRoute.route,
     };
 
     final routeBuilder = routes[settings.name];

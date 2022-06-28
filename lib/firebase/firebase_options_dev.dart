@@ -63,7 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '425597811061',
     projectId: 'nqh-flutter-temp',
     storageBucket: 'nqh-flutter-temp.appspot.com',
-    iosClientId: '425597811061-9ukr3rnjgc3htr7603gvvgjdsmf5mgam.apps.googleusercontent.com',
+    iosClientId:
+        '425597811061-9ukr3rnjgc3htr7603gvvgjdsmf5mgam.apps.googleusercontent.com',
     iosBundleId: 'com.example.flutterTempByNqh.dev',
   );
 }

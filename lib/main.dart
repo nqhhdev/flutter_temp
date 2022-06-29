@@ -28,9 +28,9 @@ Future<void> main() async {
 
 Future<void> _beforeRunApp() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   await _flavor;
 
-  await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp(
     options: ConfigManager.getInstance()!.flavorFirebaseOption,
   );
@@ -41,6 +41,7 @@ Future<void> _beforeRunApp() async {
 Future<void> get _flavor async {
   await const MethodChannel('flavor').invokeMethod<String>('getFlavor').then(
     (String? flavor) async {
+      ConfigManager.getInstance(flavorName: flavor);
       final appConfig = ConfigManager.getInstance(flavorName: flavor);
       log("App Config : ${appConfig!.apiBaseUrl}");
     },

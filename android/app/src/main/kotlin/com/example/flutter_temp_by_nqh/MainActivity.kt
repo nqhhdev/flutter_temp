@@ -19,6 +19,5 @@ class MainActivity : FlutterActivity() {
                 result.success(FLAVOR)
             } 
         }
-        GeneratedPluginRegistrant.registerWith(flutterEngine)
     }
 }
